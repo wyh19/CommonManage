@@ -69,8 +69,8 @@ router.get('/user/userinfo',
     });
 
 //退出登录
-router.get('/user/logout', function () {
-
+router.get('/user/logout', function (req,res) {
+    //todo:token模式退出登录
 });
 
 module.exports = router;

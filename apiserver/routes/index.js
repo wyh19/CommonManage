@@ -6,10 +6,10 @@ module.exports = (app) => {
         res.json({ message: 'hello index!'});
     });
     //---------------注册通用模块-----------------//
-    //通用模块 -- 用户
-    app.use('/api', require('./users'));
-    //通用模块 -- 菜单
-
+    //通用模块 -- 用户，角色，菜单
+    app.use('/api', require('./user'));
+    app.use('/api',require('./role'));
+    app.use('/api',require('./menu'));
     //---------------注册业务模块-----------------//
     //例子模块
 

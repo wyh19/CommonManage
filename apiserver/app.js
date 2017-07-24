@@ -20,7 +20,7 @@ var express = require('express'),
     routes(app);
 
     mongoose.Promise = require('bluebird');
-    mongoose.connect(config.database);
+    mongoose.connect(config.database,{useMongoClient: true});
 
     app.listen(port,()=>{
         console.log('服务启动，监听端口号：'+port);

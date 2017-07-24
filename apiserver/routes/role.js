@@ -19,7 +19,7 @@ router.get('/role',
             });
     });
 //添加角色
-router.post('/role/add',
+router.post('/role',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
         var data = req.body;
@@ -29,7 +29,7 @@ router.post('/role/add',
         });
         role.save()
             .then(function (data) {
-                res.json({success: true, message: '新增角色成功', data: data})
+                res.json({success: true, message: '新增角色成功', data: role})
             })
             .catch(function (err) {
                 res.json({success: false, message: '新增角色失败', data: err.message})
@@ -37,10 +37,10 @@ router.post('/role/add',
     }
 );
 //修改角色
-router.post('/role/edit',
+router.put('/role/:id',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
-        Role.update({_id: req.body.id}, {$set: {name: req.body.name, code: req.body.code}})
+        Role.update({_id: req.params.id}, {$set: {name: req.body.name, code: req.body.code}})
             .then(function (data) {
                 res.json({success: true, message: '修改角色成功',data:data})
             })

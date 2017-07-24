@@ -6,7 +6,7 @@ const passport = require('../passport');
 const router = express.Router();
 
 // 注册账户
-router.post('/user/signup', (req, res) => {
+router.post('/user', (req, res) => {
     if (!req.body.name || !req.body.password) {
         res.json({success: false, message: '请输入您的账号密码.'});
     } else {
@@ -15,9 +15,9 @@ router.post('/user/signup', (req, res) => {
             password: req.body.password
         });
         newUser.save().then(function () {
-            res.json({success: true, message: '成功创建新用户!'});
-        }).catch(function (e) {
-            return res.json({success: false, message: '注册失败!'});
+            res.json({success: true, message: '成功创建新用户!',data:newUser});
+        }).catch(function (err) {
+            return res.json({success: false, message: '注册失败!',data:err.message});
         });
     }
 });

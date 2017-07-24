@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const router = express.Router();
+const passport = require('../passport');
 const Menu = require('../models/menu').Menu;
 const ChildMenu = require('../models/menu').ChildMenu;
 

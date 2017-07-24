@@ -2,9 +2,8 @@ const passport = require('passport');
 const Strategy = require('passport-http-bearer').Strategy;
 
 const User = require('./models/user');
-const config = require('./config');
 
-module.exports = function(passport) {
+module.exports = function() {
     passport.use(new Strategy(
         function(token, done) {
             User.findOne({
@@ -20,4 +19,5 @@ module.exports = function(passport) {
             });
         }
     ));
-};
+    return passport
+}();

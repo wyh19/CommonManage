@@ -40,17 +40,9 @@ router.post('/role/add',
 router.post('/role/edit',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
-        Role.findOne({_id: req.body.id})
+        Role.update({_id: req.body.id}, {$set: {name: req.body.name, code: req.body.code}})
             .then(function (data) {
-                data.name = req.body.name;
-                data.code = req.body.code;
-                data.save()
-                    .then(function () {
-                        res.json({success: true, message: '修改角色成功'})
-                    })
-                    .catch(function (err) {
-                        res.json({success: false, message: '修改角色失败', data: err.message})
-                    });
+                res.json({success: true, message: '修改角色成功',data:data})
             })
             .catch(function (err) {
                 res.json({success: false, message: '修改角色失败', data: err.message})

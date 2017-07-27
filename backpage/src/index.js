@@ -1,24 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import {Router, Route, hashHistory, IndexRedirect} from 'react-router';
+import Page from './components/Page';
 import App from './App';
-import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
-import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-//index文件主要处理路由
-//app文件主要处理layout
+import Buttons from './components/ui/buttons';
+import Grids from './components/ui/grids';
+import InputTest from './components/form/InputTest';
+import AlertTest from './components/feedback/AlertTest';
 
-
-const  routes =
-    <Route path={"/"} components={}>
-
+var routes =
+<Route path={'/'} components={Page}>
+    <IndexRedirect to="/app/ui/buttons" />
+    <Route path={'app'} component={App}>
+    <Route path={'ui'}>
+    <Route path={'buttons'} component = {Buttons}/>
+    <Route path={'grids'} component = {Grids}/>
+    </Route>
+    <Route path={'form'}>
+    <Route path={'inputtest'} component = {InputTest}/>
+    </Route>
+    <Route path={'feedback'}>
+    <Route path={'alerttest'} component = {AlertTest}/>
+    </Route>
+    </Route>
     </Route>
 
-ReactDOM.render(
+    ReactDOM.render(
     <Router history={hashHistory}>
-        {routes}
+    {routes}
     </Router>,
     document.getElementById('root'));
 
-
-registerServiceWorker();

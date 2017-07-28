@@ -4,6 +4,8 @@ import {Router, Route, hashHistory, IndexRedirect} from 'react-router';
 import Page from './components/Page';
 import App from './App';
 import './index.css';
+import './style/index.less';
+import Login from './components/pages/login';
 
 import Buttons from './components/ui/buttons';
 import Grids from './components/ui/grids';
@@ -12,7 +14,7 @@ import AlertTest from './components/feedback/AlertTest';
 
 var routes =
     <Route path={'/'} components={Page}>
-        <IndexRedirect to="/app/ui/buttons"/>
+        <IndexRedirect to="/login"/>
         <Route path={'app'} component={App}>
             <Route path={'ui'}>
                 <Route path={'buttons'} component={Buttons}/>
@@ -25,6 +27,7 @@ var routes =
                 <Route path={'alerttest'} component={AlertTest}/>
             </Route>
         </Route>
+        <Route path={'login'} components={Login}/>
     </Route>
 
 ReactDOM.render(

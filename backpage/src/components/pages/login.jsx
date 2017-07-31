@@ -8,38 +8,49 @@ import {login} from '../../axios/login';
 const FormItem = Form.Item;
 
 
-
 class Login extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                var data = login(values.name,values.password);
-                console.log(data);
+                login(values.name, values.password)
+                    .then(function (data) {
+                        if (data.success) {
+                            //保存返回的信息，然后跳转到首页
+                            localStorage.setItem('token', data.token);
+                            localStorage.setItem('userName', data.name);
+                            //跳转
+                            window.location.hash = '/app';
+                        } else {
+                            //做出登录失败提示
+                        }
+                    });
             }
         });
     };
+
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
             <div className="login">
-                <div className="login-form" >
+                <div className="login-form">
                     <div className="login-logo">
                         <span>登录</span>
                     </div>
                     <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
                         <FormItem>
                             {getFieldDecorator('name', {
-                                rules: [{ required: true, message: '请输入用户名!' }],
+                                rules: [{required: true, message: '请输入用户名!'}],
                             })(
-                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                                <Input prefix={<Icon type="user" style={{fontSize: 13}}/>} placeholder="用户名"/>
                             )}
                         </FormItem>
                         <FormItem>
                             {getFieldDecorator('password', {
-                                rules: [{ required: true, message: '请输入密码!' }],
+                                rules: [{required: true, message: '请输入密码!'}],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                                <Input prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
+                                       placeholder="密码"/>
                             )}
                         </FormItem>
                         <FormItem>
@@ -50,7 +61,8 @@ class Login extends React.Component {
                                 <Checkbox>记住我</Checkbox>
                             )}
                             <a className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</a>
-                            <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
+                            <Button type="primary" htmlType="submit" className="login-form-button"
+                                    style={{width: '100%'}}>
                                 登录
                             </Button>
                             或 <a href="">现在就去注册!</a>

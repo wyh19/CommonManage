@@ -5,27 +5,21 @@ import Page from './components/Page';
 import App from './App';
 import './index.css';
 import './style/index.less';
-import Login from './components/pages/login';
-import Signup from './components/pages/signup';
+import Login from './components/pages/Login';
+import Signup from './components/pages/Signup';
 
-import Buttons from './components/ui/buttons';
-import Grids from './components/ui/grids';
-import InputTest from './components/form/InputTest';
-import AlertTest from './components/feedback/AlertTest';
+import Dashbord from './components/Dashbord';
+import User from './components/app/base/User';
+import Role from './components/app/base/Role';
 
 var routes =
     <Route path={'/'} components={Page}>
         <IndexRedirect to="/login"/>
         <Route path={'app'} component={App}>
-            <Route path={'ui'}>
-                <Route path={'buttons'} component={Buttons}/>
-                <Route path={'grids'} component={Grids}/>
-            </Route>
-            <Route path={'form'}>
-                <Route path={'inputtest'} component={InputTest}/>
-            </Route>
-            <Route path={'feedback'}>
-                <Route path={'alerttest'} component={AlertTest}/>
+            <Route path={'dashbord'} component={Dashbord}/>
+            <Route path={'base'}>
+                <Route path={'user'} component={User}/>
+                <Route path={'role'} component={Role}/>
             </Route>
         </Route>
         <Route path={'login'} components={Login}/>

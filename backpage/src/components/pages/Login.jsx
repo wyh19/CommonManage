@@ -22,8 +22,9 @@ class Login extends React.Component {
                             //保存返回的信息，然后跳转到首页
                             localStorage.setItem('token', data.token);
                             localStorage.setItem('userName', data.name);
+                            //如果勾选记住我，应该保存账号密码，下次打开该页面可以直接加载用户密码
                             //跳转
-                            window.location.hash = '/app';
+                            window.location.hash = '/app/dashbord';
                         } else {
                             //做出登录失败提示
                             message.error(data.message);

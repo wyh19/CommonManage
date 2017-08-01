@@ -6,6 +6,7 @@ import App from './App';
 import './index.css';
 import './style/index.less';
 import Login from './components/pages/login';
+import Signup from './components/pages/signup';
 
 import Buttons from './components/ui/buttons';
 import Grids from './components/ui/grids';
@@ -28,6 +29,7 @@ var routes =
             </Route>
         </Route>
         <Route path={'login'} components={Login}/>
+        <Route path={'signup'} components={Signup}/>
     </Route>
 
 ReactDOM.render(

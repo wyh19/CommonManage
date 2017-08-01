@@ -13,3 +13,10 @@ export var login = (name, password) => axios.post('/user/login',
 }).catch(function (err) {
     console.log(err);
 });
+
+export var signup = (user)=>axios.post('',{},config)
+    .then(function (response) {
+        return response.data;
+    }).catch(function (err) {
+        console.log(err);
+    });

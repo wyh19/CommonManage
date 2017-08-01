@@ -3,32 +3,19 @@
  */
 import React, {Component} from 'react';
 import {Form, Icon, Input, Button, Checkbox, message, Spin} from 'antd';
-import {login} from '../../axios/logins';
+import {signup} from '../../axios/logins';
 
 const FormItem = Form.Item;
 
 
-class Login extends React.Component {
+class Signup extends React.Component {
     state = {loading: false};
     handleSubmit = (e) => {
         this.setState({loading: true});
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                login(values.name, values.password)
-                    .then((data) => {
-                        this.setState({loading: false});
-                        if (data.success) {
-                            //保存返回的信息，然后跳转到首页
-                            localStorage.setItem('token', data.token);
-                            localStorage.setItem('userName', data.name);
-                            //跳转
-                            window.location.hash = '/app';
-                        } else {
-                            //做出登录失败提示
-                            message.error(data.message);
-                        }
-                    });
+
             }
         });
     };
@@ -80,4 +67,4 @@ class Login extends React.Component {
     }
 }
 
-export default Form.create()(Login);
+export default Form.create()(Signup);
